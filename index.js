@@ -1,16 +1,29 @@
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
+
 canvas.width = 500;
 canvas.height = 500;
 
+
 let balls = [];
 
-let ballOne =   new Circle('b1', canvas.width/2, canvas.height/2, 45, -.42, -.25, 'rgba(255, 255, 0, 0.66)');
-let ballTwo =   new Circle('b2', canvas.width/2, canvas.height/2, 70, .43, .2,    'rgba(255, 0, 255, 0.66)');
-let ballThree = new Circle('b3', canvas.width/2, canvas.height/2, 90, .44, -.64,  'rgba(0, 255, 255, 0.66)');
+let ballOne =   new Circle('b1', canvas.width/2, canvas.height/2, 45, -.94, -.25, 'rgba(255, 255, 0, 0.66)');
+let ballTwo =   new Circle('b2', canvas.width/2, canvas.height/2, 25, .43, .2,    'rgba(255, 0, 255, 0.66)');
+let ballThree = new Circle('b3', canvas.width/2, canvas.height/2, 30, .44, -.64,  'rgba(0, 255, 255, 0.66)');
 let ballFour =  new Circle('b4', canvas.width/2, canvas.height/2, 50, .45, -.23,  'rgba(255, 0, 0, 0.66)');
-let ballFive =  new Circle('b5', canvas.width/2, canvas.height/2, 60, -.94, .17,   'rgba(0, 255, 0, 0.66)');
+let ballFive =  new Circle('b5', canvas.width/2, canvas.height/2, 15, -.94, .21,   'rgba(0, 255, 0, 0.66)');
 let ballSix =   new Circle('b6', canvas.width/2, canvas.height/2, 30, -1, 2,      'rgba(0, 0, 255, 0.66)');
+
+
+
+const mediaQuery = window.matchMedia('(min-width: 600px');
+if (mediaQuery.matches){
+    canvas.width = 300
+    canvas.height = 300  
+    for (let i = 0; i < balls.length;) {
+        balls[i].length = 20
+    }
+};
 
 function Circle(_name, _x, _y, _size, _dx, _dy, _color) {
     this.name = _name
@@ -61,6 +74,7 @@ function update() {
 };
 
 update();
+
 
 // // fillRect()
 // ctx.fillStyle = 'blue';
