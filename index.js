@@ -1,29 +1,11 @@
-const canvas = document.getElementById('canvas');
-const ctx = canvas.getContext('2d');
+//simulation one (zero dimension gravitaional plane)
 
-canvas.width = 500;
-canvas.height = 500;
-
-
+const canvasOne = document.getElementById('canvasOne');
+const ctxOne = canvasOne.getContext('2d');
 let balls = [];
 
-let ballOne =   new Circle('b1', canvas.width/2, canvas.height/2, 45, -.94, -.25, 'rgba(255, 255, 0, 0.66)');
-let ballTwo =   new Circle('b2', canvas.width/2, canvas.height/2, 25, .43, .2,    'rgba(255, 0, 255, 0.66)');
-let ballThree = new Circle('b3', canvas.width/2, canvas.height/2, 30, .44, -.64,  'rgba(0, 255, 255, 0.66)');
-let ballFour =  new Circle('b4', canvas.width/2, canvas.height/2, 50, .45, -.23,  'rgba(255, 0, 0, 0.66)');
-let ballFive =  new Circle('b5', canvas.width/2, canvas.height/2, 15, -.94, .21,   'rgba(0, 255, 0, 0.66)');
-let ballSix =   new Circle('b6', canvas.width/2, canvas.height/2, 30, -1, 2,      'rgba(0, 0, 255, 0.66)');
-
-
-
-const mediaQuery = window.matchMedia('(min-width: 600px');
-if (mediaQuery.matches){
-    canvas.width = 300
-    canvas.height = 300  
-    for (let i = 0; i < balls.length;) {
-        balls[i].length = 20
-    }
-};
+canvasOne.width = 1200;
+canvasOne.height = 750;
 
 function Circle(_name, _x, _y, _size, _dx, _dy, _color) {
     this.name = _name
@@ -35,38 +17,42 @@ function Circle(_name, _x, _y, _size, _dx, _dy, _color) {
     this.color = _color
 };
 
-balls[0] = ballOne;
-balls[1] = ballTwo;
-balls[2] = ballThree;
-balls[3] = ballFour;
-balls[4] = ballFive;
-balls[5] = ballSix
-console.log(balls)
+//                           xpos ypos size   dx    dy                                   //
+let ball1 =  new Circle('b1', 250, 250, 60, -2.7,  0.6, '#ffffff');  //rgba(255, 255,   0, 1.0)');     // yellow
+let ball2 =  new Circle('b2', 250, 250, 60,  2.1,  0.9, '#cccccc');  //rgba(255, 0,   255, 1.0)');     // magenta
+let ball3 =  new Circle('b3', 250, 250, 60, -1.5,  1.2, '#999999');  //rgba(0,   255, 255, 1.0)');     // cyan 
+let ball4 =  new Circle('b4', 250, 250, 60,  1.1, -1.5, '#666666');  //rgba(255, 0,     0, 0.66)');    // red
+let ball5 =  new Circle('b5', 250, 250, 60, -0.7, -2.1, '#333333');  //rgba(0,   255,   0, 0.66)');    // green
+let ball6=   new Circle('b6', 250, 250, 60,  0.5, -2.4, '#000000');  //rgba(0,   0,   255, 0.66)');    // blue
+
+balls[0] = ball1;
+balls[1] = ball2;
+balls[2] = ball3;
+balls[3] = ball4;
+balls[4] = ball5;
+balls[5] = ball6;
 
 function drawCircle() {
-    
     for (let i = 0; i < balls.length; i++){
-        ctx.beginPath();
-        ctx.arc(balls[i].x,balls[i].y,balls[i].size,0,Math.PI * 2);
-        ctx.fillStyle = balls[i].color;
-        ctx.fill(); 
+        ctxOne.beginPath();
+        ctxOne.arc(balls[i].x,balls[i].y,balls[i].size,0,Math.PI * 2);
+        ctxOne.fillStyle = balls[i].color;
+        ctxOne.fill(); 
     }
 };
 
 function update() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctxOne.clearRect(0, 0, canvasOne.width, canvasOne.height);
     drawCircle();
-
     // changing position
     for (let i = 0; i < balls.length; i++){
         balls[i].x += balls[i].dx;
         balls[i].y += balls[i].dy;
-
     // collision detection
-        if(balls[i].x + balls[i].size > canvas.width || balls[i].x - balls[i].size < 0) {
+        if(balls[i].x + balls[i].size > canvasOne.width || balls[i].x - balls[i].size < 0) {
         balls[i].dx *= -1;
         };
-        if(balls[i].y + balls[i].size > canvas.height || balls[i].y - balls[i].size < 0){
+        if(balls[i].y + balls[i].size > canvasOne.height || balls[i].y - balls[i].size < 0){
         balls[i].dy *= -1;
         };
     };
@@ -74,41 +60,3 @@ function update() {
 };
 
 update();
-
-
-// // fillRect()
-// ctx.fillStyle = 'blue';
-// ctx.fillRect(20,20,150,100);
-// // strokeRect()
-// ctx.strokeStyle = 'green';
-// ctx.lineWidth = 4;
-// ctx.strokeRect(100,200,150,100)
-// // clearRect()
-// ctx.clearRect(25,25,140,90);
-// // fillText()
-// ctx.font = '30px Arial';
-// ctx.fillStyle = 'yellow';
-// ctx.fillText('Hello World', 400, 50);
-// // strokeText()
-// ctx.lineWidth = 1;
-// ctx.strokeStyle = 'orange';
-// ctx.strokeText('Hello World', 400, 100);
-// Paths
-// ctx.beginPath();
-// ctx.moveTo(50,50);
-// ctx.lineTo(150,50);
-// //ctx.stroke();
-// ctx.lineTo(100,150);
-// //ctx.stroke();
-// // ctx.lineTo(50,50);
-// ctx.closePath();
-// ctx.fillStyle = 'pink'
-// ctx.fill();
-// Animation 1
-// const circle = {
-//     x: 200,
-//     y: 200,
-//     size: 10,
-//     dx: 3,
-//     dy: 2
-// };
