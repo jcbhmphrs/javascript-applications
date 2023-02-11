@@ -231,7 +231,7 @@ function animate() {
         });
     });
 };
-addEventListener('touchstart', (event)=>{
+addEventListener('click', (event)=>{
     const angle = Math.atan2(event.clientY - canvas.height / 2, event.clientX - canvas.width / 2);
     const velocity = {
         x:8* Math.cos(angle),
@@ -241,14 +241,14 @@ addEventListener('touchstart', (event)=>{
     console.log(100-(7*projectiles.length));
 });
 
-startGame.addEventListener('touchstart', ()=>{
+startGame.addEventListener('click', ()=>{
     init();
     animate();
     setInterval(spawnEnemies, 2000);
     startGame.style.display = 'none';
 });
 
-playAgain.addEventListener('touchstart', ()=>{
+playAgain.addEventListener('click', ()=>{
     init();
     animate();
     endGameCard.style.display = 'none';
