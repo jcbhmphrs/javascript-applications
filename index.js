@@ -138,7 +138,7 @@ function init() {
 
 // -----------------------------------------Spawn enemies ---------------------------------------
 function spawnEnemies(){
-        const radius = Math.random() * (55 - 10) + 10;
+        const radius = Math.random() * (75 - 10) + 10;
         let x = null;
         let y = null;
         if(Math.random() > 0.5) {
@@ -153,8 +153,8 @@ function spawnEnemies(){
         const angle = Math.atan2(canvas.height / 2 - y, canvas.width / 2 - x)
         
         const velocity = {
-            x: Math.cos(angle),
-            y: Math.sin(angle)
+            x: 2*Math.cos(angle),
+            y: 2*Math.sin(angle)
         };
 
         enemies.push(new Enemy(x, y, radius, rHUE, velocity))
