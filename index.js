@@ -138,7 +138,7 @@ function init() {
 
 // -----------------------------------------Spawn enemies ---------------------------------------
 function spawnEnemies(){
-        const radius = Math.random() * (40 - 10) + 10;
+        const radius = Math.random() * (55 - 10) + 10;
         let x = null;
         let y = null;
         if(Math.random() > 0.5) {
@@ -237,7 +237,7 @@ addEventListener('click', (event)=>{
         x:8* Math.cos(angle),
         y:8* Math.sin(angle)
     };
-    projectiles.push(new Projectile(x, y, 5, `hsl(${startingPlayerColorHue}, 100%, ${100-(7*projectiles.length)}%)`, velocity));
+    projectiles.push(new Projectile(x, y, 5, `hsl(${startingPlayerColorHue}, 100%, 50%)`, velocity));
     console.log(100-(7*projectiles.length));
 });
 
